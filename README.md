@@ -2,230 +2,396 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Shermodz — Open Science Community</title>
-  <meta name="description" content="Shermodz — community for sharing incredible scientific knowledge and building out-of-the-box thinking." />
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SHERMODZ — Science, Imagination, Invention</title>
+  <meta name="description" content="SHERMODZ — community to share scientific knowledge, build out-of-the-box solutions, learning, quizzes, interactive lessons and research." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width='100' height='100' fill='%23071A3A'/><text x='50' y='58' font-size='44' text-anchor='middle' fill='%23B39DFF'>S</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
-    /* small custom styles */
-    :root{--accent:#3b82f6}
-    .fancy-border{background:linear-gradient(90deg,rgba(59,130,246,0.15),rgba(168,85,247,0.08));border-radius:18px}
+    :root{
+      --bg:#080612;
+      --card:#0d1224;
+      --muted:#9aa2c7;
+      --accent1:#5b6cff; /* blue */
+      --accent2:#8a4bff; /* violet */
+      --glass: rgba(255,255,255,0.03);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial;background:linear-gradient(180deg,var(--bg),#04030a);color:#e6eef9}
+    a{color:var(--accent1);text-decoration:none}
+    header{position:sticky;top:0;backdrop-filter:blur(6px);z-index:40;border-bottom:1px solid rgba(255,255,255,0.03)}
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:grid;place-items:center;font-weight:800;color:#fff;font-size:20px;box-shadow:0 6px 18px rgba(138,75,255,0.14)}
+    nav ul{display:flex;gap:16px;align-items:center;margin:0;padding:0;list-style:none}
+    .cta{background:linear-gradient(90deg,var(--accent1),var(--accent2));padding:10px 14px;border-radius:10px;font-weight:700;color:#fff}
+
+    .hero{padding:60px 0;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
+    .hero h1{font-size:34px;line-height:1.02;margin:0 0 12px}
+    .hero p.lead{color:var(--muted);margin:0 0 18px}
+    .badges{display:flex;gap:8px;flex-wrap:wrap}
+    .badge{background:linear-gradient(90deg,rgba(91,108,255,0.12),rgba(138,75,255,0.08));padding:8px 12px;border-radius:999px;font-weight:600;color:#dfe7ff}
+
+    .card{background:linear-gradient(180deg,var(--card),rgba(7,9,20,0.6));border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,0.03)}
+    .subjects{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
+    .subject{padding:14px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.012),transparent);border:1px solid rgba(255,255,255,0.02)}
+    .subject h4{margin:0 0 6px}
+    .muted{color:var(--muted);font-size:13px}
+
+    /* History timeline */
+    .timeline{margin-top:20px;border-left:2px dashed rgba(255,255,255,0.03);padding-left:18px}
+    .timeline .item{margin-bottom:18px}
+    details summary{cursor:pointer;outline:none}
+
+    /* Quiz */
+    .quiz{display:grid;gap:12px}
+    .question{background:var(--glass);padding:12px;border-radius:10px}
+    .options{display:flex;flex-direction:column;gap:8px}
+    .opt{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);cursor:pointer}
+    .opt:hover{transform:translateY(-2px)}
+
+    /* Layout */
+    main{padding:18px 0}
+    .two{display:grid;grid-template-columns:1fr 360px;gap:20px}
+    footer{padding:26px 0;margin-top:20px;border-top:1px solid rgba(255,255,255,0.02)}
+
+    /* responsive */
+    @media(max-width:900px){.hero{grid-template-columns:1fr;}.two{grid-template-columns:1fr}.nav ul{display:none}}
   </style>
 </head>
-<body class="bg-gray-50 text-gray-900 antialiased">
-  <!-- Header -->
-  <header class="max-w-6xl mx-auto p-6 flex items-center justify-between">
-    <a href="https://shermodz.blogspot.com" class="flex items-center gap-3">
-      <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-extrabold">S</div>
-      <div>
-        <h1 class="text-xl font-semibold">Shermodz</h1>
-        <p class="text-xs text-gray-500">Open science • Radical curiosity</p>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">S</div>
+        <div>
+          <div style="font-weight:800">SHERMODZ</div>
+          <div style="font-size:12px;color:var(--muted)">Imagination → Science → Invention</div>
+        </div>
       </div>
-    </a>
-    <nav class="hidden md:flex gap-4 items-center">
-      <a href="#about" class="text-sm hover:text-indigo-600">About</a>
-      <a href="#topics" class="text-sm hover:text-indigo-600">Topics</a>
-      <a href="#contribute" class="text-sm hover:text-indigo-600">Contribute</a>
-      <a href="#resources" class="text-sm hover:text-indigo-600">Resources</a>
-      <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-50 text-indigo-600 text-sm">Join WhatsApp</a>
-    </nav>
-    <button id="themeToggle" class="md:hidden p-2 bg-gray-100 rounded-lg">☼</button>
+      <nav>
+        <ul>
+          <li><a href="#learn">Learn</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#quiz">Quiz</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a class="cta" href="#join">Join</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <!-- Hero -->
-  <section class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-    <div>
-      <h2 class="text-4xl font-extrabold leading-tight">Science is not a subject,<br><span class="text-indigo-600">it is a way to see the world</span></h2>
-      <p class="mt-4 text-gray-600">Welcome to Shermodz — a community for sharing incredible scientific knowledge and building out-of-the-box thinking. Discover new technologies and research by Shermodz, ask questions, and collaborate.</p>
+  <main class="container">
+    <section class="hero">
+      <div>
+        <h1>SHERMODZ — Science as an eye to see the world and a hand to build it</h1>
+        <p class="lead">This community shares incredible scientific knowledge and builds out-of-the-box solutions. We blend classical theory, modern physics, engineering and hands-on experiments to turn imagination into reality.</p>
+        <div class="badges">
+          <div class="badge">Dark theme • Blue &amp; Violet</div>
+          <div class="badge">Interactive lessons</div>
+          <div class="badge">Quizzes &amp; experiments</div>
+          <div class="badge">Open research • ORCID</div>
+        </div>
 
-      <div class="mt-6 flex gap-3">
-        <a href="https://shermodz.blogspot.com" class="px-4 py-2 rounded-lg bg-indigo-600 text-white shadow hover:scale-105 transition">Visit Blog</a>
-        <a href="https://youtube.com/@shermodz" class="px-4 py-2 rounded-lg border border-indigo-200 text-indigo-600 hover:bg-indigo-50 transition">YouTube</a>
+        <div style="margin-top:18px" class="card">
+          <h3>Quick links</h3>
+          <ul style="margin:8px 0 0;padding-left:18px;color:var(--muted)">
+            <li><a href="https://shermodz.blogspot.com" target="_blank">Website blog</a></li>
+            <li><a href="https://whatsapp.com/channel/0029VbB594THgZWaplNfWj2L" target="_blank">WhatsApp channel</a></li>
+            <li><a href="https://aratt.ai/@shermodz" target="_blank">Aratt channel</a></li>
+            <li><a href="https://orcid.org/0009-0000-4201-8418" target="_blank">ORCID</a></li>
+            <li><a href="https://youtube.com/@shermodz" target="_blank">YouTube</a></li>
+          </ul>
+        </div>
       </div>
 
-      <div class="mt-6 grid grid-cols-2 gap-3 text-sm text-gray-700">
-        <div class="fancy-border p-3">
-          <strong>WhatsApp channel</strong>
-          <div class="text-xs mt-2 break-words">https://whatsapp.com/channel/0029VbB594THgZWaplNfWj2L</div>
+      <aside>
+        <div class="card">
+          <h3>Founder</h3>
+          <div style="display:flex;gap:12px;align-items:center">
+            <div style="width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent2),var(--accent1));display:grid;place-items:center;font-weight:800;color:#fff">A</div>
+            <div>
+              <div style="font-weight:700">Aswin B S</div>
+              <div class="muted">The scientific guy who makes real inventions from imagination</div>
+            </div>
+          </div>
+          <p style="margin-top:12px" class="muted">"Imagination is more important than knowledge..."<br>"Science is not a subject, it is a way to see the world."</p>
+
+          <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0">
+          <strong>Join</strong>
+          <p class="muted">Subscribe to updates and follow our channels for experiments, projects and lessons.</p>
+          <a class="cta" href="#join">Subscribe</a>
         </div>
-        <div class="fancy-border p-3">
-          <strong>Arattai</strong>
-          <div class="text-xs mt-2 break-words">https://aratt.ai/@shermodz</div>
+
+        <div style="margin-top:14px" class="card">
+          <h4>Featured project</h4>
+          <p class="muted">SheraFuser — conceptual fusion research (prototype &amp; theories). Click projects to read details.</p>
         </div>
-        <div class="fancy-border p-3">
-          <strong>ORCID</strong>
-          <div class="text-xs mt-2"><a class="text-indigo-600" href="https://orcid.org/0009-0000-4201-8418">0009-0000-4201-8418</a></div>
-        </div>
-        <div class="fancy-border p-3">
-          <strong>Blog</strong>
-          <div class="text-xs mt-2"><a class="text-indigo-600" href="https://shermodz.blogspot.com">shermodz.blogspot.com</a></div>
-        </div>
+      </aside>
+    </section>
+
+    <section id="learn" class="card">
+      <h2>Learn — Subjects &amp; interactive lessons</h2>
+      <p class="muted">Click any subject to expand history, theory, key equations, experiments and interactive links.</p>
+
+      <div class="subjects">
+        <article class="subject">
+          <h4>Classical physics</h4>
+          <div class="muted">Newtonian mechanics, Lagrangian &amp; Hamiltonian formalisms, fluid mechanics.</div>
+          <details>
+            <summary class="muted">Contents</summary>
+            <ul>
+              <li>Newton's laws, kinematics, dynamics (F=ma)</li>
+              <li>Euler-Lagrange equations, conservation laws</li>
+              <li>Classical equations: Coulomb's law, Biot–Savart, Gauss' law</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="subject">
+          <h4>Theoretical physics</h4>
+          <div class="muted">Symmetries, field theory, and speculative models.</div>
+          <details>
+            <summary class="muted">Contents</summary>
+            <ul>
+              <li>Standard Model overview, gauge symmetries</li>
+              <li>Grand Unified Theories, attempts at unification</li>
+              <li>Quantum gravity approaches (string theory, loop quantum gravity)</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="subject">
+          <h4>Quantum mechanics</h4>
+          <div class="muted">Superposition, entanglement, measurement theory and applications.</div>
+          <details>
+            <summary class="muted">Contents</summary>
+            <ul>
+              <li>Wavefunctions, Schrödinger equation, operators</li>
+              <li>Quantum electrodynamics (QED) basics</li>
+              <li>Quantum computing primer</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="subject">
+          <h4>Relativity</h4>
+          <div class="muted">Special &amp; General Relativity, spacetime geometry and gravitational theory.</div>
+          <details>
+            <summary class="muted">Contents</summary>
+            <ul>
+              <li>Einstein field equations (overview)</li>
+              <li>Time dilation, Lorentz transformations</li>
+              <li>Ten scientifically plausible time-travel concepts (explained)</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="subject">
+          <h4>Engineering</h4>
+          <div class="muted">Design methods, prototyping, and applied materials.</div>
+          <details>
+            <summary class="muted">Contents</summary>
+            <ul>
+              <li>Systems engineering, CAD, testing protocols</li>
+              <li>Electronic design, PCB basics, power systems</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="subject">
+          <h4>Inorganic chemistry</h4>
+          <div class="muted">Periodic trends, bonding, materials chemistry and synthesis.</div>
+        </article>
+
+        <article class="subject">
+          <h4>Material design</h4>
+          <div class="muted">Graphene, carbon nanotubes, composites and fabrication techniques.</div>
+        </article>
+
+        <article class="subject">
+          <h4>Fictional → Reality</h4>
+          <div class="muted">Turning sci‑fi concepts into engineering thought experiments and prototypes.</div>
+        </article>
+
+        <article class="subject">
+          <h4>Electronics &amp; Electrical</h4>
+          <div class="muted">Devices, AC motors, Tesla, discharge tubes, spectra and instrumentation.</div>
+        </article>
+
+        <article class="subject">
+          <h4>Psychology</h4>
+          <div class="muted">Body language, cognitive bias, scientific thinking and problem solving.</div>
+        </article>
       </div>
+
+      <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
+        <a class="cta" href="#projects">See projects</a>
+        <a style="padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03)" href="#quiz">Take a quiz</a>
+      </div>
+    </section>
+
+    <div class="two" style="margin-top:18px">
+      <section id="projects" class="card">
+        <h2>Projects &amp; Research</h2>
+        <p class="muted">Space for project pages. Each project gets its own subpage (Markdown/HTML) with diagrams, files and logs.</p>
+
+        <details open>
+          <summary>SHERAFUSER (conceptual)</summary>
+          <div class="muted" style="margin-top:8px">High-level description of conceptual fusion designs, thermoelectric capture, vacuum insulation and safety notes.</div>
+        </details>
+
+        <details>
+          <summary>Project 369 (fuel-free flying vehicle)</summary>
+          <div class="muted" style="margin-top:8px">Overview of design goals, prototypes and demonstrators. Notes on safety and ethics.</div>
+        </details>
+
+        <details>
+          <summary>CVD Carbon Nanotubes (low-cost)</summary>
+          <div class="muted" style="margin-top:8px">Process descriptions, low-cost recipes and laboratory safety reminders.</div>
+        </details>
+
+        <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0">
+        <h4>Project files</h4>
+        <p class="muted">You can link GitHub repos, PDF papers and datasets here. Each project page supports embedded images and YouTube videos for live lessons.</p>
+      </section>
+
+      <aside class="card">
+        <h3 id="quiz">Interactive quiz — Quick test</h3>
+        <div class="quiz" id="quiz-area">
+          <div class="question" id="q-text">Loading question...</div>
+          <div class="options" id="q-options"></div>
+          <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+            <button id="next" class="cta">Next</button>
+            <div class="muted" id="score">Score: 0 / 0</div>
+          </div>
+        </div>
+      </aside>
     </div>
 
-    <div class="bg-white rounded-2xl p-6 shadow-lg">
-      <h3 class="text-lg font-semibold">Ask a question — get scientific help</h3>
-      <p class="text-sm text-gray-500 mt-2">We can help with classical physics, quantum mechanics, engineering, chemistry, materials, electronics, psychology and turning fictional technology into practical prototypes.</p>
+    <section class="card" style="margin-top:18px">
+      <h2>History &amp; Foundations</h2>
+      <p class="muted">Curated timelines and concise histories for each discipline. Expand any timeline below.</p>
 
-      <form id="questionForm" class="mt-4 grid gap-3">
-        <input required name="name" placeholder="Your name" class="p-3 border rounded-lg" />
-        <input required name="email" placeholder="Email (optional)" class="p-3 border rounded-lg" />
-        <textarea required name="question" placeholder="Describe your scientific question or idea" rows="6" class="p-3 border rounded-lg"></textarea>
-        <div class="flex gap-2">
-          <button type="submit" class="px-4 py-2 rounded-lg bg-indigo-600 text-white">Submit</button>
-          <button type="button" id="copyLinks" class="px-4 py-2 rounded-lg border">Copy Links</button>
+      <div class="timeline">
+        <div class="item">
+          <details>
+            <summary><strong>Classical physics</strong> — Ancient to 19th century</summary>
+            <p class="muted">From Aristotle and Archimedes to Newton and Maxwell. Key equations: Newton's laws, Maxwell's equations, conservation of energy.</p>
+          </details>
         </div>
-        <div id="formMsg" class="text-sm text-green-600 hidden">Thanks — your question was prepared. Use mailto to send or paste it in the WhatsApp channel.</div>
+
+        <div class="item">
+          <details>
+            <summary><strong>Quantum revolution</strong> — 20th century</summary>
+            <p class="muted">Planck, Einstein, Schrödinger and Dirac. Development of quantum theory, QED and the Standard Model.</p>
+          </details>
+        </div>
+
+        <div class="item">
+          <details>
+            <summary><strong>Modern materials &amp; nanotech</strong></summary>
+            <p class="muted">Discovery of graphene, synthesis of carbon nanotubes and advances in materials engineering enabling today's prototypes.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="card" style="margin-top:18px">
+      <h2>About SHERMODZ</h2>
+      <p class="muted">SHERMODZ is a community platform to learn, publish and prototype. Founder: <strong>Aswin B S</strong>. Mission: Use scientific thinking to solve real-life problems and publish open research.</p>
+
+      <h3>Detailed topics included</h3>
+      <ul>
+        <li>Special &amp; General Relativity — derivations, Lorentz transforms, metric tensor overview</li>
+        <li>Standard Model, QCD, QED — particle content, interactions and Feynman diagram examples</li>
+        <li>Ten plausible time-travel ideas — wormholes, closed timelike curves, relativistic travel, cosmic strings (explanations, not instructions)</li>
+        <li>Complete periodic table overview, bonding and reactivity</li>
+        <li>Nikola Tesla: AC current, polyphase systems and motors</li>
+        <li>AI basics: structure, learning algorithms and practical demos</li>
+        <li>Carbon nanotubes &amp; graphene: structure, synthesis and properties</li>
+        <li>Electronics: discharge tubes, hydrogen spectrum, instrumentation</li>
+      </ul>
+
+      <p class="muted">Important: Some topics (weapons, harmful processes) are covered only from an academic / historical / safety perspective and will not include operational instructions.</p>
+    </section>
+
+    <section id="join" class="card" style="margin-top:18px">
+      <h2>Get involved</h2>
+      <p class="muted">Ways to contribute: write tutorials, publish projects, contribute data, volunteer as a mentor.</p>
+      <form id="subscribe" style="display:grid;grid-template-columns:1fr auto;gap:8px;max-width:720px;margin-top:10px">
+        <input id="email" placeholder="Your email or channel link" style="padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit">
+        <button class="cta" type="button" onclick="subscribe()">Subscribe</button>
       </form>
+      <p id="submsg" class="muted" style="margin-top:8px"></p>
+    </section>
 
-      <div class="mt-6 text-xs text-gray-500">Tip: Use the WhatsApp channel to share quick updates or the blog for longer writeups.</div>
-    </div>
-  </section>
+  </main>
 
-  <!-- Topics -->
-  <section id="topics" class="max-w-6xl mx-auto px-6 py-12">
-    <h3 class="text-2xl font-bold">Topics we cover</h3>
-    <p class="text-gray-600 mt-2">Deep dives, tutorials, blueprints and open research.</p>
-
-    <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Card template -->
-      <article class="p-5 bg-white rounded-2xl shadow-sm">
-        <h4 class="font-semibold">Classical & Theoretical Physics</h4>
-        <p class="text-sm text-gray-500 mt-1">Mechanics, electromagnetism, field theory and mathematical foundations.</p>
-      </article>
-
-      <article class="p-5 bg-white rounded-2xl shadow-sm">
-        <h4 class="font-semibold">Quantum Mechanics</h4>
-        <p class="text-sm text-gray-500 mt-1">Superposition, entanglement, quantum algorithms and experiments.</p>
-      </article>
-
-      <article class="p-5 bg-white rounded-2xl shadow-sm">
-        <h4 class="font-semibold">Relativity</h4>
-        <p class="text-sm text-gray-500 mt-1">Special & general relativity, spacetime geometry and thought experiments.</p>
-      </article>
-
-      <article class="p-5 bg-white rounded-2xl shadow-sm">
-        <h4 class="font-semibold">Engineering & Electronics</h4>
-        <p class="text-sm text-gray-500 mt-1">Prototyping, circuits, control systems and embedded design.</p>
-      </article>
-
-      <article class="p-5 bg-white rounded-2xl shadow-sm">
-        <h4 class="font-semibold">Materials & Inorganic Chemistry</h4>
-        <p class="text-sm text-gray-500 mt-1">Advanced materials, CVD, nanotubes and practical chemistry safety notes.</p>
-      </article>
-
-      <article class="p-5 bg-white rounded-2xl shadow-sm">
-        <h4 class="font-semibold">Psychology & Scientific Thinking</h4>
-        <p class="text-sm text-gray-500 mt-1">How to reason, design experiments and solve real-world problems with science.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- Contribute -->
-  <section id="contribute" class="max-w-6xl mx-auto px-6 py-12 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl mx-6">
-    <div class="grid md:grid-cols-2 gap-6 items-center">
-      <div>
-        <h3 class="text-2xl font-bold">Open Research & Contribution</h3>
-        <p class="text-gray-700 mt-2">We welcome experiments, blueprints, and peer review. Add your work to the blog or submit it for community review.</p>
-
-        <ul class="mt-4 text-sm text-gray-600 space-y-2">
-          <li>• Share reproducible experiments and data.</li>
-          <li>• Write tutorials and step-by-step build guides.</li>
-          <li>• Help others convert fictional ideas into realistic prototypes.</li>
-        </ul>
-
-        <div class="mt-4 flex gap-3">
-          <a href="https://orcid.org/0009-0000-4201-8418" class="px-4 py-2 rounded-lg bg-white border">ORCID</a>
-          <a href="https://youtube.com/@shermodz" class="px-4 py-2 rounded-lg bg-white border">YouTube</a>
-        </div>
-      </div>
-
-      <div class="bg-white p-5 rounded-2xl shadow-sm">
-        <h4 class="font-semibold">How to contribute</h4>
-        <ol class="text-sm mt-2 text-gray-600 list-decimal list-inside">
-          <li>Draft your article or experiment on the blog.</li>
-          <li>Share a link in the WhatsApp channel for feedback.</li>
-          <li>Open a GitHub repo for code or designs and link it in your post.</li>
-        </ol>
-
-        <div class="mt-4 text-xs text-gray-500">Want, I can give you a starter README and GitHub instructions to publish your site — choose GitHub Pages or Netlify.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Resources -->
-  <section id="resources" class="max-w-6xl mx-auto px-6 py-12">
-    <h3 class="text-2xl font-bold">Useful links & resources</h3>
-    <div class="mt-4 grid sm:grid-cols-2 gap-4">
-      <a href="https://shermodz.blogspot.com" class="p-4 bg-white rounded-xl shadow-sm flex items-start gap-3">
-        <div class="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center">B</div>
+  <footer>
+    <div class="container">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
         <div>
-          <div class="font-semibold">Shermodz Blog</div>
-          <div class="text-sm text-gray-500">Long-form posts and blueprints.</div>
+          <strong>SHERMODZ</strong>
+          <div class="muted">Imagination is more important than knowledge...</div>
         </div>
-      </a>
-
-      <a href="https://youtube.com/@shermodz" class="p-4 bg-white rounded-xl shadow-sm flex items-start gap-3">
-        <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">▶</div>
-        <div>
-          <div class="font-semibold">YouTube channel</div>
-          <div class="text-sm text-gray-500">Videos and demonstrations.</div>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer id="contact" class="max-w-6xl mx-auto px-6 py-8 text-sm text-gray-600">
-    <div class="flex flex-col md:flex-row md:justify-between gap-4">
-      <div>
-        <div class="font-semibold">Shermodz</div>
-        <div>Open research • Community • Tutorials</div>
-      </div>
-      <div class="flex gap-4">
-        <a href="https://whatsapp.com/channel/0029VbB594THgZWaplNfWj2L">WhatsApp Channel</a>
-        <a href="https://aratt.ai/@shermodz">Aratt.ai</a>
-        <a href="https://orcid.org/0009-0000-4201-8418">ORCID</a>
+        <div class="muted">Links: <a href="https://shermodz.blogspot.com">Blog</a> • <a href="https://youtube.com/@shermodz">YouTube</a> • <a href="https://orcid.org/0009-0000-4201-8418">ORCID</a></div>
       </div>
     </div>
-
-    <div class="mt-6 text-gray-500">© Shermodz — Built for curious minds. Proudly open & contributable.</div>
   </footer>
 
   <script>
-    // simple form handler
-    document.getElementById('questionForm').addEventListener('submit', function(e){
-      e.preventDefault();
-      const name = this.name.value || 'Anonymous';
-      const email = this.email.value || '';
-      const question = this.question.value;
-      const subject = encodeURIComponent('Shermodz question from ' + name);
-      const body = encodeURIComponent('Name: '+name+"\nEmail: "+email+"\n\n"+question);
-      // open user's mail client to send
-      window.location.href = 'mailto:shermodz+questions@gmail.com?subject='+subject+'&body='+body;
-      document.getElementById('formMsg').classList.remove('hidden');
-    });
+    // --- Simple quiz data (expandable) ---
+    const quiz = [
+      {q:"Who formulated the three classical laws of motion?",opts:["Einstein","Newton","Maxwell","Planck"],a:1},
+      {q:"What is the fundamental equation of non-relativistic quantum mechanics?",opts:["Maxwell's equations","Schrödinger equation","Navier–Stokes equation","Lorentz force law"],a:1},
+      {q:"Which material is a single layer of carbon atoms arranged in a hexagonal lattice?",opts:["Diamond","Graphene","Silicon","Boron Nitride"],a:1}
+    ];
 
-    // copy links
-    document.getElementById('copyLinks').addEventListener('click', function(){
-      const text = [
-        'Blog: https://shermodz.blogspot.com',
-        'WhatsApp: https://whatsapp.com/channel/0029VbB594THgZWaplNfWj2L',
-        'YouTube: https://youtube.com/@shermodz',
-        'Aratt: https://aratt.ai/@shermodz',
-        'ORCID: https://orcid.org/0009-0000-4201-8418'
-      ].join('\n');
-      navigator.clipboard?.writeText(text).then(()=>alert('Links copied to clipboard'));
-    });
+    let index = 0, score=0, total=0;
+    const qText = document.getElementById('q-text');
+    const qOpts = document.getElementById('q-options');
+    const scoreEl = document.getElementById('score');
 
-    // theme toggle (basic)
-    const btn = document.getElementById('themeToggle');
-    btn.addEventListener('click', ()=>{
-      document.documentElement.classList.toggle('dark');
-      document.body.classList.toggle('bg-gray-900');
-      document.body.classList.toggle('text-gray-50');
-    });
+    function render(){
+      const item = quiz[index%quiz.length];
+      qText.textContent = (index+1)+'. '+item.q;
+      qOpts.innerHTML = '';
+      item.opts.forEach((opt,i)=>{
+        const btn = document.createElement('div');
+        btn.className='opt';
+        btn.textContent = opt;
+        btn.onclick = ()=>{ choose(i,item.a,btn) };
+        qOpts.appendChild(btn);
+      });
+      scoreEl.textContent = `Score: ${score} / ${total}`;
+    }
+
+    function choose(i,ans,btn){
+      total++;
+      if(i===ans){ score++; btn.style.borderColor='lime'; }
+      else{ btn.style.borderColor='crimson'; }
+      // disable
+      Array.from(qOpts.children).forEach(c=>c.onclick=null);
+      scoreEl.textContent = `Score: ${score} / ${total}`;
+    }
+
+    document.getElementById('next').onclick = ()=>{ index++; render(); };
+    render();
+
+    // Subscribe (placeholder)
+    function subscribe(){
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('submsg');
+      if(!email){ msg.textContent = 'Enter an email or channel link.'; return }
+      msg.textContent = 'Thanks! Saved locally (copy to your backend to collect).';
+      // This demo does not send to server. Replace with your backend / Mailchimp / Google Form.
+      localStorage.setItem('shermodz_sub_'+Date.now(), email);
+    }
+
+    // Add small keyboard nav
+    document.addEventListener('keyup', e=>{ if(e.key==='q') window.location.hash='#quiz' })
   </script>
 </body>
 </html>
