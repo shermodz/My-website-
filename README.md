@@ -1,20 +1,3 @@
-# My-website-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Shermodz — Science as a Way to See the World</title>
-  <meta name="description" content="Shermodz: a community for sharing scientific knowledge and building out-of-the-box thinking across physics, engineering, chemistry, materials and more." />
-  <meta name="theme-color" content="#0b3b66" />
-  <style>
-    :root{
-      --bg:#f6fbff; --card:#ffffff; --accent:#0b3b66; --muted:#556677;
-      --accent-2:#00a3cc; --glass: rgba(255,255,255,0.7);
-      --radius:12px; font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;background:linear-gradient(180deg,#f0fbff 0%,var(--bg) 100%);color:#112;line-height:1.5}
-    .wrap{max-width:1100px;margin:32px auto;padding:20px}
     header{display:flex;align-items:center;justify-content:space-between;gap:12px}
     .brand{display:flex;align-items:center;gap:12px}
     .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:20px}
