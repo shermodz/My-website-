@@ -1,199 +1,231 @@
-    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:20px}
-    nav a{margin-left:14px;color:var(--accent);text-decoration:none;font-weight:600}
-    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;margin-top:28px;align-items:center}
-    .hero .card{background:var(--card);padding:26px;border-radius:var(--radius);box-shadow:0 6px 24px rgba(10,20,40,0.06)}
-    h1{margin:0 0 8px 0;font-size:28px;color:var(--accent)}
-    p.lead{margin:0;color:var(--muted)}
-    .cta{margin-top:16px;display:flex;gap:12px}
-    .btn{padding:10px 16px;border-radius:12px;border:0;cursor:pointer;font-weight:700}
-    .btn-primary{background:var(--accent);color:#fff}
-    .btn-ghost{background:transparent;color:var(--accent);border:2px solid rgba(11,59,102,0.08)}
-    .topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:22px}
-    .topic{background:linear-gradient(180deg,#fff, #fbfeff);padding:16px;border-radius:10px;border:1px solid rgba(10,20,40,0.04)}
-    .resources{display:grid;grid-template-columns:1fr 320px;gap:18px;margin-top:28px}
-    .card.small{padding:14px}
-    .links a{display:block;color:var(--accent);text-decoration:none;margin-bottom:8px;font-weight:600}
-    footer{margin-top:36px;padding:18px 12px;border-radius:10px;background:var(--card);display:flex;justify-content:space-between;align-items:center;box-shadow:0 6px 12px rgba(10,20,40,0.04)}
-    .tagline{color:var(--muted)}
-    @media (max-width:880px){.hero{grid-template-columns:1fr}.resources{grid-template-columns:1fr}.wrap{margin:12px}}
-    .quote{font-style:italic;color:var(--muted);margin-top:12px}
-    .topics .topic h4{margin:0 0 6px 0;color:var(--accent)}
-    .subscribe{display:flex;gap:8px;margin-top:12px}
-    input[type="email"]{padding:10px;border-radius:10px;border:1px solid #d6e7f3;flex:1}
-    .smallprint{font-size:13px;color:#7a8b9b;margin-top:8px}
-    .socials a{margin-right:10px;color:var(--accent);text-decoration:none;font-weight:600}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shermodz — Open Science Community</title>
+  <meta name="description" content="Shermodz — community for sharing incredible scientific knowledge and building out-of-the-box thinking." />
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* small custom styles */
+    :root{--accent:#3b82f6}
+    .fancy-border{background:linear-gradient(90deg,rgba(59,130,246,0.15),rgba(168,85,247,0.08));border-radius:18px}
   </style>
 </head>
-<body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="logo">S</div>
-        <div>
-          <div style="font-weight:800;color:var(--accent)">Shermodz</div>
-          <div style="font-size:13px;color:var(--muted)">Science is not a subject, it is a way to see the world</div>
-        </div>
+<body class="bg-gray-50 text-gray-900 antialiased">
+  <!-- Header -->
+  <header class="max-w-6xl mx-auto p-6 flex items-center justify-between">
+    <a href="https://shermodz.blogspot.com" class="flex items-center gap-3">
+      <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-extrabold">S</div>
+      <div>
+        <h1 class="text-xl font-semibold">Shermodz</h1>
+        <p class="text-xs text-gray-500">Open science • Radical curiosity</p>
       </div>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#topics">Topics</a>
-        <a href="#resources">Resources</a>
-        <a href="#join">Join</a>
-      </nav>
-    </header>
+    </a>
+    <nav class="hidden md:flex gap-4 items-center">
+      <a href="#about" class="text-sm hover:text-indigo-600">About</a>
+      <a href="#topics" class="text-sm hover:text-indigo-600">Topics</a>
+      <a href="#contribute" class="text-sm hover:text-indigo-600">Contribute</a>
+      <a href="#resources" class="text-sm hover:text-indigo-600">Resources</a>
+      <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-50 text-indigo-600 text-sm">Join WhatsApp</a>
+    </nav>
+    <button id="themeToggle" class="md:hidden p-2 bg-gray-100 rounded-lg">☼</button>
+  </header>
 
-    <section class="hero">
-      <div class="card">
-        <h1>Build an out-of-the-box scientific mindset</h1>
-        <p class="lead">Shermodz is a community for sharing incredible scientific knowledge and turning fictional ideas into practical reality across physics, engineering, materials and more.</p>
-        <div class="cta">
-          <a class="btn btn-primary" href="#join">Join Community</a>
-          <a class="btn btn-ghost" href="#resources">Explore Research</a>
-        </div>
-        <div class="quote">"Science is not a subject, it is a way to see the world"</div>
+  <!-- Hero -->
+  <section class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+    <div>
+      <h2 class="text-4xl font-extrabold leading-tight">Science is not a subject,<br><span class="text-indigo-600">it is a way to see the world</span></h2>
+      <p class="mt-4 text-gray-600">Welcome to Shermodz — a community for sharing incredible scientific knowledge and building out-of-the-box thinking. Discover new technologies and research by Shermodz, ask questions, and collaborate.</p>
 
-        <div id="about" style="margin-top:18px">
-          <h3 style="margin-bottom:6px;color:var(--accent)">Mission</h3>
-          <p class="smallprint">Share new technologies discovered by Shermodz, teach scientific thinking, help solve real-life problems with evidence-based approaches and guide contributors from imagination to working prototypes.</p>
-        </div>
+      <div class="mt-6 flex gap-3">
+        <a href="https://shermodz.blogspot.com" class="px-4 py-2 rounded-lg bg-indigo-600 text-white shadow hover:scale-105 transition">Visit Blog</a>
+        <a href="https://youtube.com/@shermodz" class="px-4 py-2 rounded-lg border border-indigo-200 text-indigo-600 hover:bg-indigo-50 transition">YouTube</a>
       </div>
 
-      <aside>
-        <div class="card small">
-          <h4 style="margin:0 0 8px 0;color:var(--accent)">Quick Links</h4>
-          <div class="links">
-            <a href="https://shermodz.blogspot.com" target="_blank" rel="noopener">Blog — shermodz.blogspot.com</a>
-            <a href="https://whatsapp.com/channel/0029VbB594THgZWaplNfWj2L" target="_blank" rel="noopener">WhatsApp Channel</a>
-            <a href="https://aratt.ai/@shermodz" target="_blank" rel="noopener">Arattai Channel</a>
-            <a href="https://orcid.org/0009-0000-4201-8418" target="_blank" rel="noopener">ORCID — Shermodz</a>
-            <a href="https://youtube.com/@shermodz" target="_blank" rel="noopener">YouTube Channel</a>
-          </div>
+      <div class="mt-6 grid grid-cols-2 gap-3 text-sm text-gray-700">
+        <div class="fancy-border p-3">
+          <strong>WhatsApp channel</strong>
+          <div class="text-xs mt-2 break-words">https://whatsapp.com/channel/0029VbB594THgZWaplNfWj2L</div>
         </div>
-
-        <div class="card small" style="margin-top:12px">
-          <h4 style="margin:0 0 8px 0;color:var(--accent)">Subscribe</h4>
-          <p class="smallprint">Get updates about new research, projects and calls for contributors.</p>
-          <div class="subscribe">
-            <input type="email" placeholder="Your email" id="email">
-            <button class="btn btn-primary" onclick="subscribe()">Subscribe</button>
-          </div>
-          <div class="smallprint" id="submsg"></div>
+        <div class="fancy-border p-3">
+          <strong>Arattai</strong>
+          <div class="text-xs mt-2 break-words">https://aratt.ai/@shermodz</div>
         </div>
-      </aside>
-    </section>
-
-    <section id="topics" style="margin-top:26px">
-      <h3 style="color:var(--accent);margin-bottom:12px">Topics We Cover</h3>
-      <div class="topics">
-        <div class="topic">
-          <h4>Classical Physics</h4>
-          <div class="smallprint">Mechanics, waves, thermodynamics, problem-solving labs.</div>
+        <div class="fancy-border p-3">
+          <strong>ORCID</strong>
+          <div class="text-xs mt-2"><a class="text-indigo-600" href="https://orcid.org/0009-0000-4201-8418">0009-0000-4201-8418</a></div>
         </div>
-        <div class="topic">
-          <h4>Theoretical Physics</h4>
-          <div class="smallprint">Models, mathematical methods, research notes and idea incubation.</div>
-        </div>
-        <div class="topic">
-          <h4>Quantum Mechanics & Relativity</h4>
-          <div class="smallprint">Concept explanations, experiments, translation of theory to tech.</div>
-        </div>
-        <div class="topic">
-          <h4>Engineering & Electronics</h4>
-          <div class="smallprint">Prototyping guides, circuit examples, systems thinking.</div>
-        </div>
-        <div class="topic">
-          <h4>Inorganic Chemistry & Materials</h4>
-          <div class="smallprint">Material design, synthesis concepts, characterization basics.</div>
-        </div>
-        <div class="topic">
-          <h4>Psychology & Problem Solving</h4>
-          <div class="smallprint">Creativity exercises, cognitive techniques for scientific thinking.</div>
+        <div class="fancy-border p-3">
+          <strong>Blog</strong>
+          <div class="text-xs mt-2"><a class="text-indigo-600" href="https://shermodz.blogspot.com">shermodz.blogspot.com</a></div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section id="resources" class="resources">
-      <div class="card">
-        <h3 style="color:var(--accent)">Featured Resources</h3>
-        <ul style="padding-left:18px">
-          <li><strong>Intro to Shermodz</strong> — Short video and manifesto on our YouTube channel.</li>
-          <li><strong>Open Research</strong> — Contribute and track research using our ORCID profile.</li>
-          <li><strong>Community Labs</strong> — Step-by-step projects to build small prototypes at home.</li>
-          <li><strong>Idea to Reality</strong> — Framework posts that translate fictional tech into engineering sketches.</li>
+    <div class="bg-white rounded-2xl p-6 shadow-lg">
+      <h3 class="text-lg font-semibold">Ask a question — get scientific help</h3>
+      <p class="text-sm text-gray-500 mt-2">We can help with classical physics, quantum mechanics, engineering, chemistry, materials, electronics, psychology and turning fictional technology into practical prototypes.</p>
+
+      <form id="questionForm" class="mt-4 grid gap-3">
+        <input required name="name" placeholder="Your name" class="p-3 border rounded-lg" />
+        <input required name="email" placeholder="Email (optional)" class="p-3 border rounded-lg" />
+        <textarea required name="question" placeholder="Describe your scientific question or idea" rows="6" class="p-3 border rounded-lg"></textarea>
+        <div class="flex gap-2">
+          <button type="submit" class="px-4 py-2 rounded-lg bg-indigo-600 text-white">Submit</button>
+          <button type="button" id="copyLinks" class="px-4 py-2 rounded-lg border">Copy Links</button>
+        </div>
+        <div id="formMsg" class="text-sm text-green-600 hidden">Thanks — your question was prepared. Use mailto to send or paste it in the WhatsApp channel.</div>
+      </form>
+
+      <div class="mt-6 text-xs text-gray-500">Tip: Use the WhatsApp channel to share quick updates or the blog for longer writeups.</div>
+    </div>
+  </section>
+
+  <!-- Topics -->
+  <section id="topics" class="max-w-6xl mx-auto px-6 py-12">
+    <h3 class="text-2xl font-bold">Topics we cover</h3>
+    <p class="text-gray-600 mt-2">Deep dives, tutorials, blueprints and open research.</p>
+
+    <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Card template -->
+      <article class="p-5 bg-white rounded-2xl shadow-sm">
+        <h4 class="font-semibold">Classical & Theoretical Physics</h4>
+        <p class="text-sm text-gray-500 mt-1">Mechanics, electromagnetism, field theory and mathematical foundations.</p>
+      </article>
+
+      <article class="p-5 bg-white rounded-2xl shadow-sm">
+        <h4 class="font-semibold">Quantum Mechanics</h4>
+        <p class="text-sm text-gray-500 mt-1">Superposition, entanglement, quantum algorithms and experiments.</p>
+      </article>
+
+      <article class="p-5 bg-white rounded-2xl shadow-sm">
+        <h4 class="font-semibold">Relativity</h4>
+        <p class="text-sm text-gray-500 mt-1">Special & general relativity, spacetime geometry and thought experiments.</p>
+      </article>
+
+      <article class="p-5 bg-white rounded-2xl shadow-sm">
+        <h4 class="font-semibold">Engineering & Electronics</h4>
+        <p class="text-sm text-gray-500 mt-1">Prototyping, circuits, control systems and embedded design.</p>
+      </article>
+
+      <article class="p-5 bg-white rounded-2xl shadow-sm">
+        <h4 class="font-semibold">Materials & Inorganic Chemistry</h4>
+        <p class="text-sm text-gray-500 mt-1">Advanced materials, CVD, nanotubes and practical chemistry safety notes.</p>
+      </article>
+
+      <article class="p-5 bg-white rounded-2xl shadow-sm">
+        <h4 class="font-semibold">Psychology & Scientific Thinking</h4>
+        <p class="text-sm text-gray-500 mt-1">How to reason, design experiments and solve real-world problems with science.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Contribute -->
+  <section id="contribute" class="max-w-6xl mx-auto px-6 py-12 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl mx-6">
+    <div class="grid md:grid-cols-2 gap-6 items-center">
+      <div>
+        <h3 class="text-2xl font-bold">Open Research & Contribution</h3>
+        <p class="text-gray-700 mt-2">We welcome experiments, blueprints, and peer review. Add your work to the blog or submit it for community review.</p>
+
+        <ul class="mt-4 text-sm text-gray-600 space-y-2">
+          <li>• Share reproducible experiments and data.</li>
+          <li>• Write tutorials and step-by-step build guides.</li>
+          <li>• Help others convert fictional ideas into realistic prototypes.</li>
         </ul>
 
-        <h4 style="margin-top:14px;color:var(--accent)">How to Contribute</h4>
-        <ol style="padding-left:18px">
-          <li>Share a short idea or paper on the blog.</li>
-          <li>Join discussions on WhatsApp or Arattai.</li>
-          <li>Upload your experimental data or schematics for peer feedback.</li>
+        <div class="mt-4 flex gap-3">
+          <a href="https://orcid.org/0009-0000-4201-8418" class="px-4 py-2 rounded-lg bg-white border">ORCID</a>
+          <a href="https://youtube.com/@shermodz" class="px-4 py-2 rounded-lg bg-white border">YouTube</a>
+        </div>
+      </div>
+
+      <div class="bg-white p-5 rounded-2xl shadow-sm">
+        <h4 class="font-semibold">How to contribute</h4>
+        <ol class="text-sm mt-2 text-gray-600 list-decimal list-inside">
+          <li>Draft your article or experiment on the blog.</li>
+          <li>Share a link in the WhatsApp channel for feedback.</li>
+          <li>Open a GitHub repo for code or designs and link it in your post.</li>
         </ol>
+
+        <div class="mt-4 text-xs text-gray-500">Want, I can give you a starter README and GitHub instructions to publish your site — choose GitHub Pages or Netlify.</div>
       </div>
+    </div>
+  </section>
 
-      <aside class="card small">
-        <h4 style="color:var(--accent)">Community</h4>
-        <p class="smallprint">Join channels, watch project videos, follow updates and collaborate on open problems.</p>
-        <div style="margin-top:10px" class="socials">
-          <a href="https://youtube.com/@shermodz" target="_blank" rel="noopener">YouTube</a>
-          <a href="https://shermodz.blogspot.com" target="_blank" rel="noopener">Blog</a>
-          <a href="https://whatsapp.com/channel/0029VbB594THgZWaplNfWj2L" target="_blank" rel="noopener">WhatsApp</a>
+  <!-- Resources -->
+  <section id="resources" class="max-w-6xl mx-auto px-6 py-12">
+    <h3 class="text-2xl font-bold">Useful links & resources</h3>
+    <div class="mt-4 grid sm:grid-cols-2 gap-4">
+      <a href="https://shermodz.blogspot.com" class="p-4 bg-white rounded-xl shadow-sm flex items-start gap-3">
+        <div class="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center">B</div>
+        <div>
+          <div class="font-semibold">Shermodz Blog</div>
+          <div class="text-sm text-gray-500">Long-form posts and blueprints.</div>
         </div>
+      </a>
 
-        <h4 style="margin-top:14px;color:var(--accent)">ORCID</h4>
-        <p class="smallprint"><a href="https://orcid.org/0009-0000-4201-8418" target="_blank" rel="noopener">https://orcid.org/0009-0000-4201-8418</a></p>
-      </aside>
-    </section>
-
-    <section id="join" style="margin-top:26px">
-      <div class="card">
-        <h3 style="color:var(--accent)">Get Involved</h3>
-        <p class="smallprint">Contributors are welcome. Whether you have a research note, a prototype, or a curious question — Shermodz is a place to share, test and scale ideas.</p>
-
-        <h4 style="margin-top:10px;color:var(--accent)">Contact & Submissions</h4>
-        <p class="smallprint">Send submissions or questions to: <a href="mailto:shermodz@example.com">shermodz@example.com</a>. For quick chat, join our WhatsApp channel linked above.</p>
-
-        <div style="margin-top:12px">
-          <label style="display:block;color:var(--muted);font-weight:600;margin-bottom:6px">Share a short idea</label>
-          <textarea id="idea" rows="4" style="width:100%;padding:12px;border-radius:10px;border:1px solid #e6f0f8"></textarea>
-          <div style="margin-top:8px">
-            <button class="btn btn-primary" onclick="submitIdea()">Submit Idea</button>
-          </div>
-          <div id="ideamsg" class="smallprint"></div>
+      <a href="https://youtube.com/@shermodz" class="p-4 bg-white rounded-xl shadow-sm flex items-start gap-3">
+        <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">▶</div>
+        <div>
+          <div class="font-semibold">YouTube channel</div>
+          <div class="text-sm text-gray-500">Videos and demonstrations.</div>
         </div>
-      </div>
-    </section>
+      </a>
+    </div>
+  </section>
 
-    <footer>
+  <!-- Footer -->
+  <footer id="contact" class="max-w-6xl mx-auto px-6 py-8 text-sm text-gray-600">
+    <div class="flex flex-col md:flex-row md:justify-between gap-4">
       <div>
-        <div style="font-weight:800;color:var(--accent)">Shermodz</div>
-        <div class="tagline">Science is not a subject, it is a way to see the world</div>
+        <div class="font-semibold">Shermodz</div>
+        <div>Open research • Community • Tutorials</div>
       </div>
-      <div style="text-align:right">
-        <div style="font-size:13px;color:var(--muted)">Links</div>
-        <div style="margin-top:6px"><a href="https://shermodz.blogspot.com" target="_blank" rel="noopener">Blog</a> · <a href="https://youtube.com/@shermodz" target="_blank" rel="noopener">YouTube</a></div>
+      <div class="flex gap-4">
+        <a href="https://whatsapp.com/channel/0029VbB594THgZWaplNfWj2L">WhatsApp Channel</a>
+        <a href="https://aratt.ai/@shermodz">Aratt.ai</a>
+        <a href="https://orcid.org/0009-0000-4201-8418">ORCID</a>
       </div>
-    </footer>
-  </div>
+    </div>
+
+    <div class="mt-6 text-gray-500">© Shermodz — Built for curious minds. Proudly open & contributable.</div>
+  </footer>
 
   <script>
-    function subscribe(){
-      const email = document.getElementById('email').value.trim();
-      const msg = document.getElementById('submsg');
-      if(!email || !email.includes('@')){ msg.textContent = 'Please enter a valid email.'; msg.style.color='crimson'; return; }
-      msg.textContent = 'Thanks! We will send updates to ' + email + '.';
-      msg.style.color='green';
-    }
-    function submitIdea(){
-      const idea = document.getElementById('idea').value.trim();
-      const msg = document.getElementById('ideamsg');
-      if(!idea){ msg.textContent = 'Please write a short description of your idea.'; msg.style.color='crimson'; return; }
-      // Replace this with real submission code when you connect a backend or email
-      msg.textContent = 'Idea received. Thank you for contributing. Please also email a detailed version to shermodz@example.com';
-      msg.style.color='green';
-      document.getElementById('idea').value='';
-    }
+    // simple form handler
+    document.getElementById('questionForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = this.name.value || 'Anonymous';
+      const email = this.email.value || '';
+      const question = this.question.value;
+      const subject = encodeURIComponent('Shermodz question from ' + name);
+      const body = encodeURIComponent('Name: '+name+"\nEmail: "+email+"\n\n"+question);
+      // open user's mail client to send
+      window.location.href = 'mailto:shermodz+questions@gmail.com?subject='+subject+'&body='+body;
+      document.getElementById('formMsg').classList.remove('hidden');
+    });
+
+    // copy links
+    document.getElementById('copyLinks').addEventListener('click', function(){
+      const text = [
+        'Blog: https://shermodz.blogspot.com',
+        'WhatsApp: https://whatsapp.com/channel/0029VbB594THgZWaplNfWj2L',
+        'YouTube: https://youtube.com/@shermodz',
+        'Aratt: https://aratt.ai/@shermodz',
+        'ORCID: https://orcid.org/0009-0000-4201-8418'
+      ].join('\n');
+      navigator.clipboard?.writeText(text).then(()=>alert('Links copied to clipboard'));
+    });
+
+    // theme toggle (basic)
+    const btn = document.getElementById('themeToggle');
+    btn.addEventListener('click', ()=>{
+      document.documentElement.classList.toggle('dark');
+      document.body.classList.toggle('bg-gray-900');
+      document.body.classList.toggle('text-gray-50');
+    });
   </script>
 </body>
 </html>
