@@ -1,4 +1,4 @@
-<!doctype html>
+
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -432,5 +432,128 @@
   <div class="shermodz-meta">
     <div class="shermodz-title">SHERMODZ RESOURCES</div>
     <div class="shermodz-sub">Imagination → Science → Invention · Founder: Aswin B S</div>
+  </div>
+</div>
+<!-- SHERMODZ Profile Badge -->
+<style>
+  .shermodz-badge {
+    --bg1: #0b1020;
+    --grad1: linear-gradient(135deg,#6ee7ff 0%,#8b6bff 45%,#ff6ec7 100%);
+    --glass: rgba(255,255,255,0.03);
+    --muted: #b9c8de;
+    --accent: #6ee7ff;
+    display:flex;
+    gap:16px;
+    align-items:center;
+    padding:14px;
+    border-radius:14px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+    border:1px solid rgba(255,255,255,0.04);
+    max-width:760px;
+    box-shadow: 0 10px 40px rgba(6,8,20,0.7);
+    font-family: Inter,Segoe UI,Roboto,Arial, sans-serif;
+    color:#e9f5ff;
+  }
+
+  .shermodz-avatar {
+    width:120px;
+    height:120px;
+    flex:0 0 120px;
+    border-radius:50%;
+    padding:6px;
+    background: conic-gradient(from 180deg at 50% 50%, #6ee7ff, #8b6bff, #ff6ec7, #6ee7ff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow: 0 8px 30px rgba(99,102,241,0.12), inset 0 1px 0 rgba(255,255,255,0.06);
+    transition: transform .28s ease, box-shadow .28s ease;
+  }
+
+  .shermodz-avatar img {
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    object-fit:cover;
+    display:block;
+    background:var(--bg1);
+    border:4px solid rgba(11,16,32,0.55);
+  }
+
+  .shermodz-avatar:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 18px 50px rgba(105,92,255,0.22); }
+
+  .shermodz-meta { display:flex; flex-direction:column; gap:6px; min-width:0 }
+  .shermodz-title {
+    font-size:20px;
+    font-weight:800;
+    letter-spacing:0.6px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .brand-badge {
+    background:var(--grad1);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    font-weight:900;
+    font-size:20px;
+  }
+  .shermodz-sub { font-size:13px; color:var(--muted); margin-top:2px }
+  .shermodz-desc { color:#cfeeff; font-size:13px; max-width:520px; line-height:1.4 }
+
+  .links { display:flex; gap:8px; margin-top:8px; flex-wrap:wrap }
+  .link-btn {
+    padding:8px 12px;
+    border-radius:10px;
+    font-weight:700;
+    font-size:13px;
+    color:#021025;
+    background: linear-gradient(90deg,#a78bfa,#6ee7ff);
+    text-decoration:none;
+    box-shadow: 0 8px 30px rgba(106,90,255,0.08);
+  }
+  .soft-btn {
+    padding:8px 12px;
+    border-radius:10px;
+    font-weight:700;
+    font-size:13px;
+    color:var(--muted);
+    background: rgba(255,255,255,0.02);
+    border:1px solid rgba(255,255,255,0.04);
+    text-decoration:none;
+  }
+
+  /* small responsive */
+  @media (max-width:720px) {
+    .shermodz-badge { flex-direction:column; align-items:center; text-align:center; padding:16px }
+    .shermodz-avatar { width:110px; height:110px; flex:0 0 110px }
+    .shermodz-meta { align-items:center }
+    .shermodz-desc { max-width:100% }
+  }
+</style>
+
+<div class="shermodz-badge" role="region" aria-label="SHERMODZ profile">
+  <div class="shermodz-avatar" aria-hidden="true">
+    <!-- Replace PROFILE_IMAGE_URL with your image link -->
+    <img src="PROFILE_IMAGE_URL" alt="SHERMODZ Resources profile picture">
+  </div>
+
+  <div class="shermodz-meta">
+    <div class="shermodz-title">
+      <span class="brand-badge">SHERMODZ</span>
+      <span style="font-weight:600; font-size:13px; color:#bcdcff;">RESOURCES</span>
+    </div>
+
+    <div class="shermodz-sub">Founder: Aswin B S · Imagination → Science → Invention</div>
+
+    <div class="shermodz-desc">
+      A community for sharing scientific knowledge and turning imaginative ideas into real inventions. Explore physics, materials, electronics, AI, experiments, and interactive lessons.
+    </div>
+
+    <div class="links" aria-hidden="false">
+      <a class="link-btn" href="https://shermodz.blogspot.com" target="_blank" rel="noopener">Visit Blog</a>
+      <a class="soft-btn" href="https://youtube.com/@shermodz" target="_blank" rel="noopener">YouTube</a>
+      <a class="soft-btn" href="https://orcid.org/0009-0000-4201-8418" target="_blank" rel="noopener">ORCID</a>
+    </div>
   </div>
 </div>
