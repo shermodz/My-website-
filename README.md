@@ -410,3 +410,27 @@
       <a class="outline" href="https://orcid.org/0009-0000-4201-8418" target="_blank">ORCID</a>
     </div>
     
+<!-- SHERMODZ profile badge -->
+<style>
+  .shermodz-badge{display:flex;align-items:center;gap:12px;font-family:Inter,system-ui,Arial;color:#e6eef8}
+  .shermodz-avatar{
+    width:88px;height:88px;border-radius:50%;overflow:hidden;
+    box-shadow:0 8px 24px rgba(2,6,23,0.6);
+    border:2px solid rgba(110,231,255,0.08);background:#071022;
+    display:inline-block;flex-shrink:0;
+  }
+  .shermodz-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+  .shermodz-meta{line-height:1}
+  .shermodz-title{font-weight:800;font-size:18px;color:#aee9ff;margin:0}
+  .shermodz-sub{font-size:12px;color:#9aa7c7;margin-top:4px}
+</style>
+
+<div class="shermodz-badge">
+  <span class="shermodz-avatar" aria-hidden="true">
+    <img src="PROFILE_IMAGE_URL" alt="SHERMODZ Resources logo"/>
+  </span>
+  <div class="shermodz-meta">
+    <div class="shermodz-title">SHERMODZ RESOURCES</div>
+    <div class="shermodz-sub">Imagination → Science → Invention · Founder: Aswin B S</div>
+  </div>
+</div>
