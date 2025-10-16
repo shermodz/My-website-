@@ -555,5 +555,236 @@
       <a class="soft-btn" href="https://youtube.com/@shermodz" target="_blank" rel="noopener">YouTube</a>
       <a class="soft-btn" href="https://orcid.org/0009-0000-4201-8418" target="_blank" rel="noopener">ORCID</a>
     </div>
-  </div>
+  <!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SHERMODZ — Learning Hub with Media</title>
+<meta name="description" content="SHERMODZ learning portal with images and videos for each lesson" />
+<link rel="preconnect" href="https://www.youtube.com" crossorigin>
+<style>
+  :root{
+    --bg:#070913; --panel:#0f1724; --muted:#9bb0d1;
+    --accent1:#6ee7ff; --accent2:#8b6bff; --glass:rgba(255,255,255,0.03);
+    --card-radius:14px; --maxw:1100px; font-family:Inter,system-ui,Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box} body{margin:0;background:
+    radial-gradient(600px 300px at 10% 10%, rgba(139,107,255,0.06), transparent 6%),
+    linear-gradient(180deg,#06101a 0%, #071224 100%); color:#e8f6ff; line-height:1.45}
+  main{max-width:var(--maxw);margin:28px auto;padding:18px}
+  header{display:flex;gap:12px;align-items:center;margin-bottom:18px}
+  h1{margin:0;font-size:20px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:640px){.grid{grid-template-columns:1fr}}
+
+  .lesson{background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+  .lesson h3{margin:0 0 8px 0}
+  .media-row{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-start}
+  .thumb{width:100%;max-width:280px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.04);background:#071225}
+  .thumb img{width:100%;height:180px;object-fit:cover;display:block}
+  .caption{font-size:13px;color:var(--muted);margin-top:8px}
+  .video-embed{width:100%;max-width:520px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
+  .video-embed iframe, .video-embed video{width:100%;height:300px;display:block;border:0;background:#000}
+
+  .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .tag{font-size:12px;color:var(--muted);padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02)}
+
+  /* gallery grid */
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+  @media(max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
+  .gallery img{width:100%;height:130px;object-fit:cover;border-radius:8px;cursor:pointer;border:1px solid rgba(255,255,255,0.03)}
+
+  /* lightbox */
+  .lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.78);z-index:1200;padding:20px}
+  .lightbox.show{display:flex}
+  .lightbox-content{max-width:1100px;width:100%;max-height:90vh;overflow:auto;border-radius:12px;background:linear-gradient(180deg,#061026 0%,#081026 100%);padding:12px;border:1px solid rgba(255,255,255,0.04)}
+  .lightbox img{max-width:100%;height:auto;border-radius:8px;display:block}
+  .close-btn{position:absolute;top:18px;right:22px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:8px 10px;border-radius:8px;cursor:pointer}
+
+  /* download / source row */
+  .row{display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap}
+  .link{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#021025;padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:700}
+  .soft{background:rgba(255,255,255,0.02);color:var(--muted);padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);text-decoration:none}
+
+  /* accessible note */
+  .note{font-size:13px;color:var(--muted);margin-top:10px}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>SHERMODZ Learning Hub — Media-enabled Lessons</h1>
+      <div style="color:var(--muted);font-size:13px;margin-top:6px">Every lesson contains images, videos, captions, downloadable media, and an interactive gallery.</div>
+    </div>
+  </header>
+
+  <!-- Lessons grid: duplicate lesson blocks for each subject and fill media -->
+  <section class="grid" id="lessons">
+
+    <!-- Lesson example: Classical Physics -->
+    <article class="lesson" data-subject="Classical Physics" id="lesson-classical">
+      <h3>Classical Physics — Mechanics & Waves</h3>
+      <div class="media-row">
+        <figure class="thumb" aria-label="Projectile motion image">
+          <img loading="lazy" src="PLACEHOLDER_IMAGE_PROJECTILE.jpg" alt="Projectile motion demonstration with trajectory overlay">
+          <figcaption class="caption">Projectile motion: trajectory with air resistance removed</figcaption>
+        </figure>
+
+        <div class="video-embed" aria-label="Pendulum simulation video">
+          <!-- Replace with direct mp4 or YouTube embed -->
+          <iframe loading="lazy" src="https://www.youtube.com/embed/VIDEO_ID_CLASSICAL" title="Pendulum simulation" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="caption">Pendulum simulation and energy exchange demo</div>
+        </div>
+      </div>
+
+      <div class="gallery" aria-hidden="false">
+        <img loading="lazy" src="PLACEHOLDER_IMAGE_WAVE1.jpg" alt="Harmonic wave snapshot" data-full="PLACEHOLDER_IMAGE_WAVE1_LARGE.jpg">
+        <img loading="lazy" src="PLACEHOLDER_IMAGE_WAVE2.jpg" alt="Standing waves in a string" data-full="PLACEHOLDER_IMAGE_WAVE2_LARGE.jpg">
+        <img loading="lazy" src="PLACEHOLDER_IMAGE_PENDULUM.jpg" alt="Pendulum motion frames" data-full="PLACEHOLDER_IMAGE_PENDULUM_LARGE.jpg">
+      </div>
+
+      <div class="meta">
+        <span class="tag">Equations: F=ma, KE=1/2mv^2</span>
+        <span class="tag">Level: Beginner → Advanced</span>
+        <a class="link" href="DOWNLOADS/classical-notes.pdf" download>Download notes</a>
+        <a class="soft" href="#lesson-classical">Open lesson</a>
+      </div>
+    </article>
+
+    <!-- Lesson example: Quantum Mechanics -->
+    <article class="lesson" data-subject="Quantum Mechanics" id="lesson-quantum">
+      <h3>Quantum Mechanics — Wavefunctions & Spectra</h3>
+      <div class="media-row">
+        <figure class="thumb" aria-label="Hydrogen spectrum image">
+          <img loading="lazy" src="PLACEHOLDER_IMAGE_HYDROGEN.jpg" alt="Hydrogen emission lines">
+          <figcaption class="caption">Hydrogen spectral lines and energy levels</figcaption>
+        </figure>
+
+        <div class="video-embed" aria-label="Double-slit demo">
+          <video controls preload="metadata" poster="PLACEHOLDER_VIDEO_THUMB_QM.jpg">
+            <source src="PLACEHOLDER_VIDEO_DOUBLE_SLIT.mp4" type="video/mp4">
+            Your browser does not support the video element.
+          </video>
+          <div class="caption">Double-slit interference experiment simulation</div>
+        </div>
+      </div>
+
+      <div class="gallery">
+        <img loading="lazy" src="PLACEHOLDER_QM1.jpg" alt="Wavefunction probability plot" data-full="PLACEHOLDER_QM1_LG.jpg">
+        <img loading="lazy" src="PLACEHOLDER_QM2.jpg" alt="Quantum tunneling illustration" data-full="PLACEHOLDER_QM2_LG.jpg">
+        <img loading="lazy" src="PLACEHOLDER_QM3.jpg" alt="Stern-Gerlach setup" data-full="PLACEHOLDER_QM3_LG.jpg">
+      </div>
+
+      <div class="meta">
+        <span class="tag">Equations: Schrödinger equation, operators</span>
+        <span class="tag">Level: Intermediate → Research</span>
+        <a class="link" href="DOWNLOADS/quantum-guide.pdf" download>Download guide</a>
+      </div>
+    </article>
+
+    <!-- Lesson example: Materials & Nanotech -->
+    <article class="lesson" data-subject="Materials" id="lesson-materials">
+      <h3>Materials — Graphene & Carbon Nanotubes</h3>
+      <div class="media-row">
+        <figure class="thumb" aria-label="Graphene microscope image">
+          <img loading="lazy" src="PLACEHOLDER_GRAPHENE.jpg" alt="Microscope image of graphene flakes">
+          <figcaption class="caption">Graphene flakes on substrate with contrast-enhanced imaging</figcaption>
+        </figure>
+
+        <div class="video-embed" aria-label="CNT synthesis video">
+          <iframe loading="lazy" src="https://www.youtube.com/embed/VIDEO_ID_MATERIALS" title="CNT synthesis" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="caption">Carbon nanotube synthesis overview and characterization</div>
+        </div>
+      </div>
+
+      <div class="gallery">
+        <img loading="lazy" src="PLACEHOLDER_CNT1.jpg" alt="Single-wall CNT TEM" data-full="PLACEHOLDER_CNT1_LG.jpg">
+        <img loading="lazy" src="PLACEHOLDER_GRAPHENE2.jpg" alt="Graphene lattice image" data-full="PLACEHOLDER_GRAPHENE2_LG.jpg">
+        <img loading="lazy" src="PLACEHOLDER_DEVICE.jpg" alt="Graphene-based device" data-full="PLACEHOLDER_DEVICE_LG.jpg">
+      </div>
+
+      <div class="meta">
+        <span class="tag">Topics: Lattice, synthesis, properties</span>
+        <a class="link" href="DOWNLOADS/materials-notes.pdf" download>Download notes</a>
+      </div>
+    </article>
+
+    <!-- Add more lesson blocks following the same pattern for Relativity, Engineering, Electronics, Psychology, AI, Fictional Tech -->
+  </section>
+
+  <div class="note">All lesson images use lazy loading. Click gallery images to open a high-resolution preview. Replace PLACEHOLDER_* URLs with your hosted images and videos. Use descriptive alt text for accessibility.</div>
+</main>
+
+<!-- Lightbox for viewing full images and videos -->
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <button id="closeLightbox" class="close-btn" aria-label="Close">Close</button>
+  <div class="lightbox-content" id="lightboxContent" tabindex="0"></div>
 </div>
+
+<script>
+  // Lightbox: open image or video from data-full or src
+  (function(){
+    const lb = document.getElementById('lightbox');
+    const content = document.getElementById('lightboxContent');
+    const closeBtn = document.getElementById('closeLightbox');
+
+    function openLightbox(type, src, alt=''){
+      content.innerHTML = '';
+      if(type==='image'){
+        const img = document.createElement('img'); img.src = src; img.alt = alt || '';
+        content.appendChild(img);
+      } else if(type==='video'){
+        const vid = document.createElement('video'); vid.controls = true; vid.autoplay = true;
+        vid.src = src; vid.style.maxWidth='100%'; vid.style.height='auto';
+        content.appendChild(vid);
+      } else if(type==='iframe'){
+        const iframe = document.createElement('iframe'); iframe.src = src; iframe.width='100%'; iframe.height='560';
+        iframe.setAttribute('allow','accelerometer; encrypted-media; gyroscope; picture-in-picture'); iframe.allowFullscreen = true;
+        content.appendChild(iframe);
+      }
+      lb.classList.add('show'); lb.setAttribute('aria-hidden','false'); content.focus();
+    }
+
+    // open images from gallery
+    document.querySelectorAll('.gallery img').forEach(img=>{
+      img.addEventListener('click', ()=>{
+        const full = img.dataset.full || img.src;
+        openLightbox('image', full, img.alt);
+      });
+    });
+
+    // open video posters or video elements
+    document.querySelectorAll('.video-embed iframe').forEach(ifr=>{
+      // clicking the embed container opens iframe in lightbox for a cleaner view on mobile
+      ifr.closest('.video-embed').addEventListener('click', (e)=>{
+        const src = ifr.src;
+        openLightbox('iframe', src);
+        e.stopPropagation();
+      });
+    });
+
+    document.querySelectorAll('.video-embed video').forEach(v=>{
+      v.addEventListener('click', (e)=>{
+        const src = v.querySelector('source')?.src || v.currentSrc;
+        openLightbox('video', src);
+        e.stopPropagation();
+      });
+    });
+
+    closeBtn.addEventListener('click', ()=>{ lb.classList.remove('show'); lb.setAttribute('aria-hidden','true'); });
+    lb.addEventListener('click', (e)=>{ if(e.target===lb) { lb.classList.remove('show'); lb.setAttribute('aria-hidden','true'); } });
+    window.addEventListener('keydown', e=>{ if(e.key==='Escape'){ lb.classList.remove('show'); lb.setAttribute('aria-hidden','true'); } });
+
+  })();
+
+  // Accessibility: ensure video iframes use title and loading
+  document.querySelectorAll('iframe').forEach((f,i)=>{ if(!f.title) f.title = 'Embedded media frame ' + (i+1); if(!f.loading) f.loading='lazy'; });
+
+  // Guidance helper for maintainers: auto-convert YouTube share links to embeddable format if pasted
+  // Not interactive here, just placeholder behavior explanation for manual use.
+</script>
+</body>
+</html>
