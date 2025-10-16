@@ -788,3 +788,386 @@
 </script>
 </body>
 </html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SHERMODZ — Learning Hub</title>
+<meta name="description" content="SHERMODZ — science community: multi-topic lessons with images, videos, quizzes and animations." />
+<style>
+  /* ---- Theme / Basic ---- */
+  :root{
+    --bg:#050614;
+    --card:#0e1630;
+    --muted:#99b0d1;
+    --accent1:#6ee7ff;
+    --accent2:#8b6bff;
+    --accent3:#ff6ec7;
+    --glass: rgba(255,255,255,0.03);
+    --radius:14px;
+    --maxw:1100px;
+    --ease:cubic-bezier(.2,.9,.3,1);
+    font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+    color-scheme: dark;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:
+    radial-gradient(700px 300px at 10% 8%, rgba(139,107,255,0.05), transparent 6%),
+    linear-gradient(180deg,#03040a 0%, #071226 100%);}
+  body{color:#e8f7ff; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; line-height:1.45;}
+  a{color:var(--accent1); text-decoration:none}
+  main{max-width:var(--maxw); margin:20px auto; padding:16px}
+
+  /* ---- Header ---- */
+  header{display:flex;gap:16px;align-items:center;padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.03);backdrop-filter: blur(6px)}
+  .logo-wrap{display:flex;align-items:center;gap:12px}
+  .logo {
+    width:64px;height:64px;border-radius:14px;padding:6px;background:conic-gradient(from 200deg,#6ee7ff,#8b6bff,#ff6ec7);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 8px 30px rgba(99,102,241,0.08);
+  }
+  .logo img{width:100%;height:100%;object-fit:cover;border-radius:10px;border:3px solid rgba(2,6,23,0.6)}
+  .brand-title{font-weight:800;letter-spacing:0.6px}
+  nav{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .nav-link{padding:8px 12px;border-radius:10px;font-weight:700;font-size:13px;color:var(--muted);background:transparent;border:1px solid rgba(255,255,255,0.02);transition:all .25s var(--ease)}
+  .nav-link.active{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#031025;box-shadow:0 8px 30px rgba(99,102,241,0.08)}
+  .nav-link:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(6,8,20,0.6);color:#eaf8ff}
+
+  /* ---- Hero ---- */
+  .hero{display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:center;margin-top:18px}
+  .hero-card{padding:18px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.03)}
+  .hero h1{margin:0;font-size:22px}
+  .motto{color:var(--muted);margin-top:8px}
+  .cta{display:flex;gap:10px;margin-top:12px}
+  .btn{padding:10px 14px;border-radius:12px;font-weight:800;border:0;cursor:pointer}
+  .btn-primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#031025}
+  .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted)}
+
+  /* ---- Layout / Cards ---- */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+  @media(max-width:980px){ .hero{grid-template-columns:1fr} .grid{grid-template-columns:repeat(2,1fr)} nav{display:none} }
+  @media(max-width:640px){ .grid{grid-template-columns:1fr} header{flex-direction:column;align-items:flex-start} .logo{width:56px;height:56px} }
+
+  .topic-card{padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.03);transition:transform .28s var(--ease), box-shadow .28s var(--ease)}
+  .topic-card:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(2,6,23,0.6)}
+  .topic-card h3{margin:0 0 8px 0}
+  .topic-card p{color:var(--muted);margin:0;font-size:13px}
+
+  /* ---- Animated icons ---- */
+  .icon-dot{width:10px;height:10px;border-radius:50%;background:var(--accent1);box-shadow:0 6px 20px rgba(110,231,255,0.12);display:inline-block;margin-right:8px}
+  .pulse{animation:pulse 2s infinite}
+  @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.18)}100%{transform:scale(1)}}
+
+  /* ---- Content area (SPA pages) ---- */
+  .page{display:none;opacity:0;transform:translateY(8px);transition:opacity .36s var(--ease), transform .36s var(--ease)}
+  .page.active{display:block;opacity:1;transform:translateY(0)}
+  .page .card{padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.03);}
+
+  /* ---- Media gallery ---- */
+  .media{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+  .media .thumb{width:100%;max-width:300px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);background:#07101a}
+  .media img{width:100%;height:180px;object-fit:cover;display:block}
+  .video-wrap{flex:1;min-width:260px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
+  .video-wrap iframe, .video-wrap video{width:100%;height:260px;border:0;display:block}
+
+  /* ---- Lightbox ---- */
+  .lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.8);z-index:1200;padding:18px}
+  .lightbox.show{display:flex}
+  .lb-body{max-width:1100px;width:100%;max-height:90vh;overflow:auto;border-radius:12px;background:#061026;padding:12px;border:1px solid rgba(255,255,255,0.03)}
+  .lb-body img, .lb-body video, .lb-body iframe{width:100%;height:auto;border-radius:8px;display:block}
+  .lb-close{position:absolute;top:16px;right:18px;padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--muted);cursor:pointer}
+
+  /* ---- Footer ---- */
+  footer{margin:28px auto;text-align:center;color:var(--muted);font-size:13px}
+
+  /* ---- Utilities ---- */
+  .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .tag{font-size:12px;color:var(--muted);padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02)}
+  .hidden{display:none}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo-wrap">
+    <div class="logo" aria-hidden="true">
+      <!-- add your circular profile image here (replace src) -->
+      <img id="profileImg" src="PLACEHOLDER_PFP.jpg" alt="SHERMODZ Resources profile">
+    </div>
+    <div>
+      <div class="brand-title">SHERMODZ</div>
+      <div style="font-size:12px;color:var(--muted)">Imagination → Science → Invention • Founder: Aswin B S</div>
+    </div>
+  </div>
+
+  <nav id="mainNav" aria-label="Main navigation">
+    <button class="nav-link active" data-route="">Home</button>
+    <button class="nav-link" data-route="classical">Classical</button>
+    <button class="nav-link" data-route="theory">Theoretical</button>
+    <button class="nav-link" data-route="quantum">Quantum</button>
+    <button class="nav-link" data-route="relativity">Relativity</button>
+    <button class="nav-link" data-route="materials">Materials</button>
+    <button class="nav-link" data-route="electronics">Electronics</button>
+    <button class="nav-link" data-route="ai">AI</button>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-card">
+      <h1>SHERMODZ — Learn, Experiment, Invent</h1>
+      <div class="motto">Science is not a subject, it is a way to see and invent the world</div>
+      <div class="cta">
+        <button class="btn btn-primary" id="exploreBtn">Explore Topics</button>
+        <a class="btn btn-ghost" href="https://shermodz.blogspot.com" target="_blank" rel="noopener">Visit Blog</a>
+      </div>
+
+      <div style="margin-top:12px" class="row">
+        <div class="icon-dot pulse" aria-hidden="true"></div>
+        <div style="color:var(--muted);font-size:13px">Interactive lessons with images, videos, quizzes and downloadable notes</div>
+      </div>
+    </div>
+
+    <aside class="topic-card">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div><strong style="color:var(--accent1)">Quick links</strong></div>
+        <div class="row">
+          <a class="tag" href="#/classical">Classical</a>
+          <a class="tag" href="#/quantum">Quantum</a>
+          <a class="tag" href="#/relativity">Relativity</a>
+          <a class="tag" href="#/materials">Materials</a>
+        </div>
+        <div style="color:var(--muted);font-size:13px">Replace placeholder assets with your images/videos in the code below.</div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ---- SPA Pages ---- -->
+  <section id="pages" style="margin-top:18px">
+    <!-- Home page -->
+    <div class="page active" id="page-home">
+      <div class="card">
+        <h2>Welcome to SHERMODZ</h2>
+        <p style="color:var(--muted)">A community for sharing scientific knowledge, new technologies discovered by SHERMODZ, and practical experiments that turn imagination into invention.</p>
+        <div class="grid" style="margin-top:14px">
+          <!-- summary topic cards -->
+          <article class="topic-card" role="button" tabindex="0" data-route="classical">
+            <h3>Classical Physics</h3>
+            <p>Newtonian mechanics, waves, thermodynamics, electromagnetism — equations and demos.</p>
+          </article>
+          <article class="topic-card" role="button" tabindex="0" data-route="theory">
+            <h3>Theoretical Physics</h3>
+            <p>Lagrangians, field theory, symmetry, and the mathematical language of physics.</p>
+          </article>
+          <article class="topic-card" role="button" tabindex="0" data-route="quantum">
+            <h3>Quantum Mechanics</h3>
+            <p>Wavefunctions, operators, spectra, entanglement and hydrogen lines.</p>
+          </article>
+          <article class="topic-card" role="button" tabindex="0" data-route="relativity">
+            <h3>Relativity</h3>
+            <p>Special and general relativity, spacetime, metrics, and gravitational waves.</p>
+          </article>
+          <article class="topic-card" role="button" tabindex="0" data-route="materials">
+            <h3>Materials & Nanotech</h3>
+            <p>Graphene, carbon nanotubes, lattice structures and device integration.</p>
+          </article>
+          <article class="topic-card" role="button" tabindex="0" data-route="electronics">
+            <h3>Electronics</h3>
+            <p>AC/DC, polyphase motors, circuits, sensors, and instrumentation.</p>
+          </article>
+          <article class="topic-card" role="button" tabindex="0" data-route="ai">
+            <h3>AI & Computation</h3>
+            <p>ML workflows, simulations, scientific computing and data-driven experiments.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <!-- Topic template (reused) -->
+    <template id="topic-template">
+      <div class="page" id="">
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+            <div>
+              <h2 class="topic-title">Topic</h2>
+              <div style="color:var(--muted)" class="topic-desc">Short topic description...</div>
+            </div>
+            <div class="row">
+              <a class="tag" href="#" id="download-notes">Download notes</a>
+              <a class="tag" href="#" id="open-quiz">Open quiz</a>
+            </div>
+          </div>
+
+          <div class="media" style="margin-top:12px">
+            <figure class="thumb">
+              <img loading="lazy" src="PLACEHOLDER_IMAGE1.jpg" alt="Lesson image 1" />
+              <figcaption class="caption" style="color:var(--muted);font-size:13px">Sample image 1</figcaption>
+            </figure>
+
+            <div class="video-wrap">
+              <!-- use either video tag (mp4) or iframe for YouTube -->
+              <iframe loading="lazy" src="https://www.youtube.com/embed/PLACEHOLDER_VIDEO_ID" title="Lesson Video" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <div class="caption" style="color:var(--muted);font-size:13px">Sample demonstration video</div>
+            </div>
+          </div>
+
+          <div class="gallery" style="margin-top:12px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px">
+            <img loading="lazy" src="PLACEHOLDER_IMAGE_G1.jpg" alt="Gallery 1" data-full="PLACEHOLDER_IMAGE_G1_LG.jpg">
+            <img loading="lazy" src="PLACEHOLDER_IMAGE_G2.jpg" alt="Gallery 2" data-full="PLACEHOLDER_IMAGE_G2_LG.jpg">
+            <img loading="lazy" src="PLACEHOLDER_IMAGE_G3.jpg" alt="Gallery 3" data-full="PLACEHOLDER_IMAGE_G3_LG.jpg">
+          </div>
+
+          <div style="margin-top:12px;color:var(--muted)">
+            <h4 style="margin:0 0 6px 0">Key equations & notes</h4>
+            <pre style="background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;overflow:auto;color:#dfeeff">/* Add equations, code, references here */</pre>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- Pre-generate pages for each topic (IDs must match nav data-route values) -->
+    <div id="topic-pages"></div>
+
+  </section>
+
+  <!-- Lightbox for images / videos -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <button class="lb-close" id="lbClose">Close</button>
+    <div class="lb-body" id="lbBody" tabindex="0"></div>
+  </div>
+
+  <footer>
+    <div>SHERMODZ — Imagination is more important than knowledge. Founder: Aswin B S</div>
+    <div style="margin-top:8px;color:var(--muted)">shermodz.blogspot.com • <a href="https://youtube.com/@shermodz" target="_blank">YouTube</a> • <a href="https://whatsapp.com/channel/0029VbB594THgZWaplNfWj2L" target="_blank">WhatsApp</a></div>
+  </footer>
+</main>
+
+<script>
+  /* ---- Data: topics with placeholders. Replace asset URLs with your real ones ---- */
+  const TOPICS = {
+    classical: {
+      id:'classical', title:'Classical Physics', desc:'Newtonian mechanics, waves, thermodynamics and electromagnetism.',
+      heroImg:'PLACEHOLDER_CLASSICAL_BIG.jpg',
+      videoEmbed:'https://www.youtube.com/embed/PLACEHOLDER_VIDEO_ID_CLASSICAL',
+      gallery:['PLACEHOLDER_CLASSICAL_G1.jpg','PLACEHOLDER_CLASSICAL_G2.jpg','PLACEHOLDER_CLASSICAL_G3.jpg'],
+      notes:'DOWNLOADS/classical-notes.pdf'
+    },
+    theory: {
+      id:'theory', title:'Theoretical Physics', desc:'Lagrangians, Hamiltonians, symmetry, and field theory.',
+      heroImg:'PLACEHOLDER_THEORY_BIG.jpg', videoEmbed:'https://www.youtube.com/embed/PLACEHOLDER_VIDEO_ID_THEORY',
+      gallery:['PLACEHOLDER_THEORY_G1.jpg','PLACEHOLDER_THEORY_G2.jpg','PLACEHOLDER_THEORY_G3.jpg'],
+      notes:'DOWNLOADS/theory-notes.pdf'
+    },
+    quantum: {
+      id:'quantum', title:'Quantum Mechanics', desc:'Schrödinger equation, spectra, entanglement and experiments.',
+      heroImg:'PLACEHOLDER_QUANTUM_BIG.jpg', videoEmbed:'https://www.youtube.com/embed/PLACEHOLDER_VIDEO_ID_QUANTUM',
+      gallery:['PLACEHOLDER_QUANTUM_G1.jpg','PLACEHOLDER_QUANTUM_G2.jpg','PLACEHOLDER_QUANTUM_G3.jpg'],
+      notes:'DOWNLOADS/quantum-notes.pdf'
+    },
+    relativity: {
+      id:'relativity', title:'Relativity', desc:'Special and general relativity, spacetime geometry and gravitational waves.',
+      heroImg:'PLACEHOLDER_REL_BIG.jpg', videoEmbed:'https://www.youtube.com/embed/PLACEHOLDER_VIDEO_ID_REL',
+      gallery:['PLACEHOLDER_REL_G1.jpg','PLACEHOLDER_REL_G2.jpg','PLACEHOLDER_REL_G3.jpg'],
+      notes:'DOWNLOADS/relativity-notes.pdf'
+    },
+    materials: {
+      id:'materials', title:'Materials & Nanotech', desc:'Graphene, CNTs, synthesis and device integration.',
+      heroImg:'PLACEHOLDER_MAT_BIG.jpg', videoEmbed:'https://www.youtube.com/embed/PLACEHOLDER_VIDEO_ID_MAT',
+      gallery:['PLACEHOLDER_MAT_G1.jpg','PLACEHOLDER_MAT_G2.jpg','PLACEHOLDER_MAT_G3.jpg'],
+      notes:'DOWNLOADS/materials-notes.pdf'
+    },
+    electronics: {
+      id:'electronics', title:'Electronics', desc:'Circuits, AC/DC, motors, sensors, and instrumentation.',
+      heroImg:'PLACEHOLDER_ELEC_BIG.jpg', videoEmbed:'https://www.youtube.com/embed/PLACEHOLDER_VIDEO_ID_ELEC',
+      gallery:['PLACEHOLDER_ELEC_G1.jpg','PLACEHOLDER_ELEC_G2.jpg','PLACEHOLDER_ELEC_G3.jpg'],
+      notes:'DOWNLOADS/electronics-notes.pdf'
+    },
+    ai: {
+      id:'ai', title:'AI & Computation', desc:'Machine learning, simulations, and data-driven science.',
+      heroImg:'PLACEHOLDER_AI_BIG.jpg', videoEmbed:'https://www.youtube.com/embed/PLACEHOLDER_VIDEO_ID_AI',
+      gallery:['PLACEHOLDER_AI_G1.jpg','PLACEHOLDER_AI_G2.jpg','PLACEHOLDER_AI_G3.jpg'],
+      notes:'DOWNLOADS/ai-notes.pdf'
+    }
+  };
+
+  /* ---- Initialize: build topic pages from template ---- */
+  (function buildPages(){
+    const container = document.getElementById('topic-pages');
+    const tpl = document.getElementById('topic-template');
+    Object.values(TOPICS).forEach(topic=>{
+      const clone = tpl.content.cloneNode(true);
+      const page = clone.querySelector('.page');
+      page.id = 'page-'+topic.id;
+      page.querySelector('.topic-title').textContent = topic.title;
+      page.querySelector('.topic-desc').textContent = topic.desc;
+      page.querySelector('img.thumb img')?.setAttribute('src', topic.heroImg);
+      // set iframe video
+      const iframe = page.querySelector('iframe');
+      if(iframe) iframe.src = topic.videoEmbed;
+      // gallery images
+      const imgs = page.querySelectorAll('.gallery img');
+      imgs.forEach((img,i)=>{
+        img.src = topic.gallery[i] || topic.gallery[0] || 'PLACEHOLDER_GENERIC.jpg';
+        img.dataset.full = topic.gallery[i] || img.src;
+      });
+      // notes link
+      const dl = page.querySelector('#download-notes');
+      if(dl) { dl.href = topic.notes; dl.setAttribute('download',''); }
+      container.appendChild(clone);
+    });
+  })();
+
+  /* ---- Simple hash routing ---- */
+  (function routing(){
+    const navBtns = document.querySelectorAll('.nav-link');
+    function setActiveRoute(route){
+      // highlight nav
+      navBtns.forEach(b=> b.classList.toggle('active', b.dataset.route===route || (route==='' && b.dataset.route==='')));
+      // show page
+      document.querySelectorAll('.page').forEach(p=> p.classList.remove('active'));
+      if(!route || !TOPICS[route]){
+        document.getElementById('page-home').classList.add('active');
+        history.replaceState(null,'', '#/');
+        return;
+      }
+      const el = document.getElementById('page-'+route);
+      if(el){ el.classList.add('active'); history.replaceState(null,'', '#/'+route); }
+    }
+    // nav click
+    navBtns.forEach(b=>{
+      b.addEventListener('click', ()=> setActiveRoute(b.dataset.route || ''));
+    });
+    // cards clickable
+    document.querySelectorAll('.topic-card').forEach(c=>{
+      c.addEventListener('click', ()=> setActiveRoute(c.dataset.route));
+      c.addEventListener('keypress', e=>{ if(e.key==='Enter') setActiveRoute(c.dataset.route); });
+    });
+    // handle hash changes on load
+    function handleHash(){
+      const h = location.hash.replace('#/','') || '';
+      setActiveRoute(h);
+    }
+    window.addEventListener('hashchange', handleHash);
+    handleHash();
+  })();
+
+  /* ---- Lightbox ---- */
+  (function lightbox(){
+    const lb = document.getElementById('lightbox');
+    const lbBody = document.getElementById('lbBody');
+    const lbClose = document.getElementById('lbClose');
+    // open on gallery image click
+    document.addEventListener('click', e=>{
+      const img = e.target.closest('.gallery img, .media img, .thumb img');
+      if(img){
+        const src = img.dataset.full || img.src;
+        lbBody.innerHTML = '';
+        const large = document.createElement('img');
+        large.src = src;
+        large.alt = img.alt || '';
+        lbBody.appendChild(large);
+        lb.classList.add('show'); lb.setAttribute('aria-hidden','false');
+      }
+      // video iframe click: open in lightbox as iframe
+      const iframeWrap = e.target.closest('.video-wrap iframe');
+      if(iframeWrap){
+        const src = iframeWrap.src;
+        lbBody.innerHTML = '';
