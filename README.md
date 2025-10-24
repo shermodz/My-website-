@@ -1,27 +1,366 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>SHERMODZ — Science, Imagination, Invention</title>
-<meta name="description" content="SHERMODZ — community for sharing scientific knowledge, building out-of-the-box thinking, experiments, quizzes and live interactive lessons."/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SHERMODZ Scientific Community</title>
 <style>
-  :root{
-    --bg:#0b0f1a;
-    --panel:#0f1724;
-    --muted:#9aa7c7;
-    --accent1:#6ee7ff;
-    --accent2:#a78bfa;
-    --glass: rgba(255,255,255,0.03);
-    --glass-2: rgba(255,255,255,0.02);
-    --card: linear-gradient(135deg, rgba(68,35,197,0.12), rgba(14,165,233,0.06));
-    --radius:14px;
-    font-family: Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto&display=swap');
+
+  :root {
+    --bg-color: #121212;
+    --primary-color: #4a00e0;
+    --secondary-color: #8a2be2;
+    --accent-color: #3b82f6;
+    --text-color: #e0e0e0;
+    --highlight-color: #7f00ff;
+    --link-color: #90caf9;
+    --border-color: #2a2a2a;
+    --quiz-bg: #1f1f40;
   }
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0;
+
+  body, html {
+    margin: 0; padding: 0; background: var(--bg-color); color: var(--text-color);
+    font-family: 'Roboto', sans-serif;
+    scroll-behavior: smooth;
+  }
+  a {
+    color: var(--link-color);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--accent-color);
+  }
+  h1, h2, h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--highlight-color);
+  }
+
+  header {
+    display: flex; align-items: center; padding: 1rem 2rem;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    position: sticky; top: 0; z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.7);
+  }
+  header img.logo {
+    height: 60px;
+    margin-right: 1rem;
+    border-radius: 8px;
+  }
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  nav {
+    margin-left: auto;
+  }
+  nav a {
+    margin-left: 1.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  section {
+    margin-bottom: 3rem;
+    border-radius: 10px;
+    padding: 1.5rem 2rem;
+    background: #1a1a2e;
+    box-shadow: 0 0 20px #4a00e0bb;
+    transition: background 0.3s ease;
+  }
+  section:hover {
+    background: #271d4d;
+  }
+
+  ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+  }
+
+  blockquote {
+    font-style: italic;
+    color: var(--accent-color);
+    border-left: 4px solid var(--highlight-color);
+    margin: 1rem 0 1rem 1rem;
+    padding-left: 1rem;
+  }
+
+  .subjects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 1.5rem;
+  }
+  .subject-card {
+    background: #2b2b50;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 0 15px #7f00ffbb;
+    color: var(--text-color);
+  }
+  .subject-card img {
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+  }
+  .subject-card h3 {
+    margin-top: 0;
+  }
+
+  #quiz-section {
+    background: var(--quiz-bg);
+    color: var(--text-color);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+  #quiz-section h2 {
+    color: var(--accent-color);
+  }
+  #quiz-section button {
+    margin-top: 1rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: 'Orbitron', sans-serif;
+    transition: background 0.3s ease;
+  }
+  #quiz-section button:hover {
+    background: var(--secondary-color);
+  }
+
+  footer {
+    background: #0e0e20;
+    color: var(--text-color);
+    text-align: center;
+    padding: 1rem 2rem;
+    font-size: 0.9rem;
+  }
+  footer a {
+    margin: 0 0.8rem;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="1000003523.jpg" alt="SHERMODZ Logo" class="logo" />
+  <h1>SHERMODZ</h1>
+  <nav>
+    <a href="#purpose">Purpose</a>
+    <a href="#subjects">Subjects</a>
+    <a href="#topics">Theories & History</a>
+    <a href="#quiz">Quiz</a>
+    <a href="#founder">Founder</a>
+    <a href="#links">Links</a>
+  </nav>
+</header>
+
+<main>
+  <section id="purpose">
+    <h2>Purpose of SHERMODZ</h2>
+    <p>This is the community for sharing incredible scientific knowledge and fostering an out-of-the-box mentality. SHERMODZ showcases new technologies discovered by Aswin B S and helps you explore scientific questions in:</p>
+    <ul>
+      <li>Classical Physics</li>
+      <li>Theoretical Physics</li>
+      <li>Quantum Mechanics</li>
+      <li>Relativity</li>
+      <li>Engineering</li>
+      <li>Psychology</li>
+      <li>Inorganic Chemistry</li>
+      <li>Material Design</li>
+      <li>Fictional Technology to Reality</li>
+      <li>Electronics & Electrical</li>
+    </ul>
+    <p>SHERMODZ builds scientific thinking and solves real-life problems through science because <strong>"Science is not a subject, it is a way to see the world."</strong></p>
+    <blockquote>
+      "Imagination is more important than knowledge, knowledge is limited but imagination encircles the world 🌎" <br/>
+      "Science is not a subject; it is a way to see and invent the world."
+    </blockquote>
+    <p><strong>SHERMODZ will guide you to use science as an eye to see the world and a hand to build it.</strong></p>
+  </section>
+
+  <section id="subjects">
+    <h2>Learn & Explore</h2>
+    <div class="subjects-grid">
+      <div class="subject-card">
+        <h3>Classical Physics</h3>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Newtons_Principia_Mathema.png/320px-Newtons_Principia_Mathema.png" alt="Newton's Principia" />
+        <p>Discover the foundation laws laid by Newton, equations of motion, forces, and charge dynamics.</p>
+      </div>
+      <div class="subject-card">
+        <h3>Theoretical Physics</h3>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Einstein_Symbol.svg/320px-Einstein_Symbol.svg.png" alt="Einstein" />
+        <p>Dive deep into modern physics: relativistic effects, special and general relativity.</p>
+      </div>
+      <div class="subject-card">
+        <h3>Quantum Mechanics</h3>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Double-slit_experiment_results_Tanamura_2.jpg/320px-Double-slit_experiment_results_Tanamura_2.jpg" alt="Double Slit Experiment" />
+        <p>Explore quantum phenomena, the standard model, quantum electrodynamics, and gravity theories.</p>
+      </div>
+      <div class="subject-card">
+        <h3>Engineering</h3>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Civil_engineering_project_Turkey.jpg/320px-Civil_engineering_project_Turkey.jpg" alt="Engineering" />
+        <p>Apply scientific principles to real-world building, electronics, and electrical technologies.</p>
+      </div>
+      <div class="subject-card">
+        <h3>Psychology</h3>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Face_body_language_silhouettes.png/320px-Face_body_language_silhouettes.png" alt="Body Language" />
+        <p>Explore the psychology of body language and cognitive science.</p>
+      </div>
+      <div class="subject-card">
+        <h3>Inorganic Chemistry & Materials</h3>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Periodic_table_large.png/320px-Periodic_table_large.png" alt="Periodic Table" />
+        <p>Study periodic table, carbon nanostructures like graphene and nanotubes, and material design principles.</p>
+      </div>
+      <div class="subject-card">
+        <h3>Fictional Tech to Reality</h3>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Science_Fiction.svg/320px-Science_Fiction.svg.png" alt="Sci-fi" />
+        <p>Turn fiction into science: concepts on time travel, weapon tech, and futuristic devices.</p>
+      </div>
+      <div class="subject-card">
+        <h3>Electronics & Electrical</h3>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Electronic_circuit_board.jpg/320px-Electronic_circuit_board.jpg" alt="Circuit Board" />
+        <p>Understand circuitry, AC motors, polyphase current, discharge tubes, and hydrogen spectrum.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="topics">
+    <h2>Scientific Theories & History Highlights</h2>
+    <p>Explore topics such as:</p>
+    <ul>
+      <li>10 Scientifically Possible Ways to Travel in Time</li>
+      <li>Special & General Theory of Relativity</li>
+      <li>The Standard Model, Quantum Chromodynamics, Quantum Electrodynamics, Quantum Gravity</li>
+      <li>Grand Unified Theory and Theory of Everything</li>
+      <li>Fundamental Forces of Nature</li>
+      <li>Classical Equations: Charges, Forces, Newtonian Dynamics, Laws of Motion</li>
+      <li>The Periodic Table and its Elements</li>
+      <li>Contributions of Nikola Tesla: AC Current and Motors, Polyphase Systems</li>
+      <li>Psychology of Body Language</li>
+      <li>Artificial Intelligence Workings</li>
+      <li>Structure and Function of Carbon Nanotubes and Graphene</li>
+      <li>Functioning of Electronic Devices, Discharge Tubes & Hydrogen Spectrum</li>
+      <li>Weapon Technologies and Advanced Scientific Concepts</li>
+    </ul>
+  </section>
+
+  <section id="quiz">
+    <h2>Science Quiz</h2>
+    <div id="quiz-section">
+      <div id="quiz-container">
+        <p id="question"></p>
+        <div id="choices"></div>
+        <button id="next-btn" style="display:none;">Next Question</button>
+        <p id="result"></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="founder">
+    <h2>Founder of SHERMODZ</h2>
+    <p><strong>Aswin B S</strong> - The scientific guy who makes real inventions from imagination. A passionate innovator turning ideas to reality through science and invention.</p>
+  </section>
+
+  <section id="links">
+    <h2>Connect & Learn More</h2>
+    <p><strong>Official Website:</strong> <a href="https://shermodz.blogspot.com" target="_blank" rel="noopener">shermodz.blogspot.com</a></p>
+    <p><strong>WhatsApp Channel:</strong> <a href="https://whatsapp.com/channel/0029VbB594THgZWaplNfWj2L" target="_blank" rel="noopener">Join WhatsApp Channel</a></p>
+    <p><strong>Arattai Channel:</strong> <a href="https://aratt.ai/@shermodz" target="_blank" rel="noopener">https://aratt.ai/@shermodz</a></p>
+    <p><strong>ORCID:</strong> <a href="https://orcid.org/0009-0000-4201-8418" target="_blank" rel="noopener">https://orcid.org/0009-0000-4201-8418</a></p>
+    <p><strong>YouTube Channel:</strong> <a href="https://youtube.com/@shermodz" target="_blank" rel="noopener">SHERMODZ on YouTube</a></p>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2025 SHERMODZ Community. All Rights Reserved.</p>
+</footer>
+
+<script>
+  const quizData = [
+    {
+      question: "Who formulated the laws of motion?",
+      choices: ["Albert Einstein", "Isaac Newton", "Nikola Tesla", "Galileo Galilei"],
+      answer: 1
+    },
+    {
+      question: "What does E=mc² represent?",
+      choices: ["Energy-mass equivalence", "Force equation", "Velocity of light", "Quantum theory"],
+      answer: 0
+    },
+    {
+      question: "Which particle is known as the 'God particle'?",
+      choices: ["Electron", "Photon", "Higgs Boson", "Proton"],
+      answer: 2
+    }
+  ];
+
+  let currentQuestionIndex = 0;
+  const questionEl = document.getElementById('question');
+  const choicesEl = document.getElementById('choices');
+  const nextBtn = document.getElementById('next-btn');
+  const resultEl = document.getElementById('result');
+
+  function loadQuestion() {
+    resultEl.textContent = '';
+    const currentQuestion = quizData[currentQuestionIndex];
+    questionEl.textContent = currentQuestion.question;
+    choicesEl.innerHTML = '';
+    currentQuestion.choices.forEach((choice, index) => {
+      const btn = document.createElement('button');
+      btn.textContent = choice;
+      btn.style.display = 'block';
+      btn.style.margin = '0.4rem 0';
+      btn.onclick = () => checkAnswer(index);
+      choicesEl.appendChild(btn);
+    });
+    nextBtn.style.display = 'none';
+  }
+
+  function checkAnswer(selected) {
+    const currentQuestion = quizData[currentQuestionIndex];
+    if(selected === currentQuestion.answer) {
+      resultEl.textContent = "Correct!";
+      resultEl.style.color = "#4CAF50";
+    } else {
+      resultEl.textContent = `Wrong! Correct answer: ${currentQuestion.choices[currentQuestion.answer]}`;
+      resultEl.style.color = "#f44336";
+    }
+    Array.from(choicesEl.children).forEach(btn => btn.disabled = true);
+    nextBtn.style.display = 'inline-block';
+  }
+
+  nextBtn.addEventListener('click', () => {
+    currentQuestionIndex++;
+    if(currentQuestionIndex < quizData.length) {
+      loadQuestion();
+    } else {
+      questionEl.textContent = "Quiz Completed! Thanks for participating.";
+      choicesEl.innerHTML = '';
+      nextBtn.style.display = 'none';
+      resultEl.textContent = '';
+    }
+  });
+
+  loadQuestion();
+
+</script>
+
+</body>
+</html>    margin:0;
     background:
       radial-gradient(800px 400px at 10% 10%, rgba(106,90,255,0.08), transparent 6%),
       radial-gradient(700px 350px at 90% 90%, rgba(34,211,238,0.06), transparent 6%),
